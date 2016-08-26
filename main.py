@@ -7,13 +7,13 @@ def main():
 	count = 1
 
 	# Renaming folders
-		for root, dirs, files in os.walk(path):
-			for i in dirs:
-				try:
-					os.rename(os.path.join(root, i), os.path.join(root, str(count)))
-				except OSError:
-					print("Failed to rename folder: " + os.path.join(root, i) + "\n")
-				count += 1	
+	for root, dirs, files in os.walk(path):
+		for i in dirs:
+			try:
+				os.rename(os.path.join(root, i), os.path.join(root, str(count)))
+			except OSError:
+				print("Failed to rename folder: " + os.path.join(root, i) + "\n")
+			count += 1	
 
 	# Renaming files
 	for root, dirs, files in os.walk(path):
@@ -27,7 +27,7 @@ def main():
 			else:
 				# Add image extension
 				if img_type is None:
-					print("Possible corupted file: " + os.path.join(root, i) + "\n")
+					print("Possible corupted file: " + os.path.join(root, i))
 				else:
 					try:
 						os.rename(os.path.join(root, i), os.path.join(root, i + "." + img_type))
