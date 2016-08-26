@@ -19,10 +19,11 @@ def main():
 				# Add image extension
 				if img_type is None:
 					print("Possible corupted file: " + os.path.join(root, i) + "\n")
-				try:
-					os.rename(os.path.join(root, i), os.path.join(root, i + "." + img_type))
-				except OSError:
-					print("Failed to rename file: " + os.path.join(root, i) + "\n")
+				else:
+					try:
+						os.rename(os.path.join(root, i), os.path.join(root, i + "." + img_type))
+					except OSError:
+						print("Failed to rename file: " + os.path.join(root, i) + "\n")
 
 	# Renaming folders
 	for root, dirs, files in os.walk(path):
