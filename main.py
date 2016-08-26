@@ -6,6 +6,15 @@ def main():
 	path = "./files"
 	count = 1
 
+	# Renaming folders
+		for root, dirs, files in os.walk(path):
+			for i in dirs:
+				try:
+					os.rename(os.path.join(root, i), os.path.join(root, str(count)))
+				except OSError:
+					print("Failed to rename folder: " + os.path.join(root, i) + "\n")
+				count += 1	
+
 	# Renaming files
 	for root, dirs, files in os.walk(path):
 		for i in files:
@@ -25,13 +34,5 @@ def main():
 					except OSError:
 						print("Failed to rename file: " + os.path.join(root, i) + "\n")
 
-	# Renaming folders
-	for root, dirs, files in os.walk(path):
-		for i in dirs:
-			try:
-				os.rename(os.path.join(root, i), os.path.join(root, str(count)))
-			except OSError:
-				print("Failed to rename folder: " + os.path.join(root, i) + "\n")
-			count += 1		
 main()
 print "done"
