@@ -11,16 +11,26 @@ def main():
 		for i in files:
 			img_type = imghdr.what(os.path.join(root, i))
 			if i == '0' and remove_ad == True:
-				os.remove(os.path.join(root, i)) # Delete ad
+				try:
+					os.remove(os.path.join(root, i)) # Delete ad
+				except OSError:
+					print("failed to delete: " + os.path.join(root, i) + "\n")
 			else:
 				# Add image extension
-				os.rename(os.path.join(root, i), os.path.join(root, i + "." + img_type))
+				if img_type is None:
+					print("Possible corupted file: " + os.path.join(root, i) + "\n")
+				try:
+					os.rename(os.path.join(root, i), os.path.join(root, i + "." + img_type))
+				except OSError:
+					print("Failed to rename file: " + os.path.join(root, i) + "\n")
 
 	# Renaming folders
 	for root, dirs, files in os.walk(path):
 		for i in dirs:
-			os.rename(os.path.join(root, i), os.path.join(root, str(count)))
-			count += 1
-
+			try:
+				os.rename(os.path.join(root, i), os.path.join(root, str(count)))
+			except OSError:
+				print("Failed to rename folder: " + os.path.join(root, i) + "\n")
+			count += 1		
 main()
 print "done"
