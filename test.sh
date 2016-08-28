@@ -1,0 +1,15 @@
+mkdir ./files/0001
+mkdir ./files/0002
+mkdir ./files/0003
+mkdir ./files/0004
+mkdir ./files/0005
+mkdir ./files/0006
+mkdir ./files/0007
+mkdir ./files/0008
+mkdir ./files/0009
+mkdir ./files/00010
+mkdir ./files/00011
+mkdir ./files/00012
+mkdir ./files/00013
+mkdir ./files/00014
+mkdir ./files/00015
