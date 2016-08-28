@@ -1,7 +1,7 @@
 Should work fine on Linux or Windows, using <b>Python</b> 2.7 or 3.
 
-<h1>About:</h1>
-MangaRock app allows users to download chapers. However they name their chaper folders with cryptic URL numbers, and don't add file extions to the images. With new versions of the app, they now include a ad image at the start of every chapter.
+<h2>About:</h2>
+MangaRock app allows users to download chapers. However they name their chaper folders with cryptic URL numbers, and don't add file extions to the images. With new versions of the app, they now include an ad image at the start of every chapter.
 
 This program looks at the file type of each image, and adds their file extension (png, jpeg, gif, ect), renames the folders from 1, and deletes the ad imgage.
 
