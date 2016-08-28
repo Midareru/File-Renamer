@@ -1,5 +1,3 @@
-Should work fine on Linux or Windows, using <b>Python</b> 2.7 or 3.
-
 <h2>About:</h2>
 MangaRock app allows users to download chapers. However they name their chaper folders with cryptic URL numbers, and don't add file extions to the images. With new versions of the app, they now include an ad image at the start of every chapter.
 
@@ -17,6 +15,8 @@ This program looks at the file type of each image, and adds their file extension
 </ol>
 <i>If you still have corrupted files, run main.py again to update the corupted file list
 then repeat from step #3.</i>
+
+Should work fine on Linux or Windows, using <b>Python</b> 2.7 or 3.
 
 <h2>Files:</h2>
 <ul>
