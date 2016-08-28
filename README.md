@@ -18,7 +18,7 @@ This program looks at the file type of each image, and adds their file extension
 <i>If you still have corrupted files, run main.py again to update the corupted file list
 then repeat from step #3.</i>
 
-Files:
+<h2>Files:</h2>
 <ul>
 <li>main.py - renames the files</li>
 <li>repair.py - replaces corupted images</li>
