@@ -7,7 +7,7 @@ This program looks at the file type of each image, and adds their file extension
 
 <b>Included is a repair tool for replacing images that failed to correcty download.</b>
 
-<h1>Usage:</h1>
+<h2>Usage:</h2>
 <ol>
 <li>Move your downloaded folders into the folder "files"</li>
 <li>in the console enter "sh run.sh" or "python run.py"</li>
