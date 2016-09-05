@@ -3,12 +3,13 @@ import imghdr
 from shutil import copyfile
 
 
-log_path = "repair_log.txt" # Log for this tool
-corupted_log = "log.txt" # What files need to be replaced
-repair_source = "./repair" # Path to folder with non corupt files
-repair_dest = "./files" # Path to folder with corrupt files
+log_path = "repair_log.txt"  # Log for this tool
+corrupted_log = "log.txt"  # What files need to be replaced
+repair_source = "./repair"  # Path to folder with non corrupt files
+repair_dest = "./files"  # Path to folder with corrupt files
 
 output = open(log_path, "wr")
+
 
 def log(text):
 	print(text)
@@ -16,33 +17,20 @@ def log(text):
 
 
 def main():
-	# First, check to see if the replacemnt folders need renaming
-	if not os.path.isdir(repair_source + "/1"):
-		count = 1
-		for root, dirs, files in os.walk(repair_source):
-			try:
-				for i in sorted(dirs, key=int):
-					os.rename(os.path.join(root, i), os.path.join(root, str(count)))
-					count += 1
-			except OSError:
-				log("Unable to rename repair folder/s")
-		log("Renamed replacement folders")
-	
-	# Replace all files
-	with open(corupted_log, "r") as f:
+	with open(corrupted_log, "r") as f:
 		for line in f:
 			# Create path for the replacement file
 			repair_path = line.split(repair_dest)
 			repair_path = repair_path[1].strip("\n")
 			repair_path = repair_source + repair_path
 			# Strip trailing \n from file
-			corupt_path = line.strip("\n")
+			corrupt_path = line.strip("\n")
 
-			print("repairing: " + corupt_path)
+			print("repairing: " + corrupt_path)
 
 			# Check we have the reqired files
-			if not os.path.isfile(corupt_path):
-				log("Failed to find corrupt file: " + corupt_path)
+			if not os.path.isfile(corrupt_path):
+				log("Failed to find corrupt file: " + corrupt_path)
 			elif not os.path.isfile(repair_path):
 				log("Failed to find replacement file:" + repair_path)
 			elif imghdr.what(repair_path) is None:
@@ -50,15 +38,15 @@ def main():
 				log(repair_path)
 			else:
 				try:
-					# Delete corupt file
-					os.remove(corupt_path) 
+					# Delete corrupt file
+					os.remove(corrupt_path)
 					# Copy over file
-					copyfile(repair_path, corupt_path)
+					copyfile(repair_path, corrupt_path)
 					# Add the file extension to the moved file
-					os.rename(corupt_path, corupt_path + "." + imghdr.what(corupt_path))
+					os.rename(corrupt_path, corrupt_path + "." + imghdr.what(corrupt_path))
 					log("Repair suceeded.")
 				except OSError:
-					log("OS Error: " + corupt_path + ", " + repair_path)
+					log("OS Error: " + corrupt_path + ", " + repair_path)
 
 main()
 output.close()
