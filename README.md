@@ -10,7 +10,8 @@ This program looks at the file type of each image, and adds their file extension
 <li>Move your downloaded folders into the folder "files"</li>
 <li>in the console enter "sh run.sh" or "python run.py"</li>
 <li>If you get corruption warnings, redownload the effected chapters</li>
-<li>Place the redownloaded folders into the "repair" folder AS THEY ARE (Don't rename files/folders, the script handles this itself)</li>
+<li>Rename the new chapters with their numbers</li>
+<li>Place the redownloaded folders into the "repair" folder</li>
 <li>Run "sh repair.sh" or "python repair.py"</li>
 </ol>
 <i>If you still have corrupted files, run main.py again to update the corupted file list
