@@ -2,6 +2,14 @@ import os
 import imghdr
 import sys
 
+# Store folder names here for easy reading later
+corrupted_dirs = set()
+
+# Get the folder name from the path
+def get_dirname(path):
+	path = path.split('/')
+	return path[2]
+
 # Returns an input string, with non digit chars removed
 def get_numeric(input_text):
 	text = ""
@@ -81,12 +89,14 @@ def main():
 				if img_type is None:
 					print("Possible corrupted file: " + os.path.join(root, i))
 					logfile.write(os.path.join(root, i) + "\n")
+					# Log the effected chapter/s
+					corrupted_dirs.update(get_dirname(os.path.join(root, i)))
 					corrupted = True
 				else:
 					try:
 						# Skip files that already have an extension
 						if "." in i:
-							print("skipping " + i)
+							pass
 						else:
 							os.rename(os.path.join(root, i), os.path.join(root, i + "." + img_type))
 					except OSError:
@@ -104,3 +114,6 @@ corrupted = main()
 if corrupted:
 	print("Risk of corrupt files, redownload effected chapters and place into ./repair")
 	print("Use repair.py to fix the corrupt files.")
+	print("Effected chapters:")
+	for chapter in sorted(corrupted_dirs, key=int):
+		print(chapter)
