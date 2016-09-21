@@ -3,7 +3,7 @@ import imghdr
 import sys
 
 # Store folder names here for easy reading later
-corrupted_dirs = set()
+corrupted_dirs = []
 
 # Get the folder name from the path
 def get_dirname(path):
@@ -90,7 +90,7 @@ def main():
 					print("Possible corrupted file: " + os.path.join(root, i))
 					logfile.write(os.path.join(root, i) + "\n")
 					# Log the effected chapter/s
-					corrupted_dirs.update(get_dirname(os.path.join(root, i)))
+					corrupted_dirs.append(get_dirname(os.path.join(root, i)))
 					corrupted = True
 				else:
 					try:
@@ -115,5 +115,7 @@ if corrupted:
 	print("Risk of corrupt files, redownload effected chapters and place into ./repair")
 	print("Use repair.py to fix the corrupt files.")
 	print("Effected chapters:")
-	for chapter in sorted(corrupted_dirs, key=int):
+	# Convert to set to remove duplicate chapters
+	chapters = set(corrupted_dirs)
+	for chapter in sorted(chapters, key=int):
 		print(chapter)
